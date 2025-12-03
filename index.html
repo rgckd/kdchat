@@ -311,15 +311,9 @@
         const messagesContainer = document.getElementById('messages');
         const messageInput = document.getElementById('messageInput');
         const sendButton = document.getElementById('sendButton');
-
-        // Sample responses for demo
-        const botResponses = [
-            "Thanks for reaching out! I'd be happy to help you with that.",
-            "Kickdrum specializes in technology assessment, acceleration, and assurance. Which area interests you most?",
-            "We've worked with over 100 companies and 50+ investors. How can we support your technology goals?",
-            "Our battle-tested playbooks have unlocked billions in ROI. What challenges are you facing?",
-            "Let me connect you with one of our experts who can provide detailed information about that.",
-        ];
+        const WEBHOOK_URL = 'https://rgchandar.app.n8n.cloud/webhook/3de15543-3335-4dca-9505-72a4656cafff/chat';
+        
+        let conversationHistory = [];
 
         function addMessage(text, isUser = false) {
             const welcomeMessage = messagesContainer.querySelector('.welcome-message');
@@ -381,6 +375,7 @@
             if (!message) return;
             
             addMessage(message, true);
+            conversationHistory.push({ role: 'user', content: message });
             messageInput.value = '';
             
             // Disable input while bot is "thinking"
@@ -389,16 +384,37 @@
             
             showTypingIndicator();
             
-            // Simulate bot response delay
-            setTimeout(() => {
+            // Send to webhook and get response
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: message,
+                    conversationHistory: conversationHistory
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
                 hideTypingIndicator();
-                const randomResponse = botResponses[Math.floor(Math.random() * botResponses.length)];
-                addMessage(randomResponse, false);
+                const botResponse = data.response || data.message || "I'm here to help! Could you please rephrase that?";
+                addMessage(botResponse, false);
+                conversationHistory.push({ role: 'assistant', content: botResponse });
                 
                 messageInput.disabled = false;
                 sendButton.disabled = false;
                 messageInput.focus();
-            }, 1000 + Math.random() * 1500);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                hideTypingIndicator();
+                addMessage("Sorry, I'm having trouble connecting. Please try again later.", false);
+                
+                messageInput.disabled = false;
+                sendButton.disabled = false;
+                messageInput.focus();
+            });
         }
 
         sendButton.addEventListener('click', sendMessage);
