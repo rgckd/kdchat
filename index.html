@@ -94,6 +94,20 @@
             content: 'S';
             font-weight: 600;
         }
+
+        /* Hide welcome screen elements */
+        [class*="welcomeScreen"],
+        [class*="welcome-screen"],
+        [class*="WelcomeScreen"] {
+            display: none !important;
+        }
+
+        /* Style the input container */
+        [class*="inputContainer"],
+        [class*="input-container"] {
+            background: #2a2a2a !important;
+            border-top: 1px solid #1a1a1a !important;
+        }
     </style>
 </head>
 <body>
@@ -110,11 +124,13 @@
         createChat({
             webhookUrl: 'https://rgchandar.app.n8n.cloud/webhook/ba84a436-361c-4258-85ee-c0e8a41e1ec5/chat',
             mode: 'fullscreen',
-            showWelcomeScreen: false,
+            showWelcomeScreen: true,
             initialMessages: [
                 'Hey drummer, This is Sharan, your People Success Partner.',
                 'Do you have a few minutes to share your Kickdrum Experience with me?'
             ],
+            chatInputKey: 'chatInput',
+            chatSessionKey: 'sessionId',
             i18n: {
                 en: {
                     title: '',
