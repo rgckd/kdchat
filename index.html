@@ -108,6 +108,29 @@
             background: #2a2a2a !important;
             border-top: 1px solid #1a1a1a !important;
         }
+
+        /* Hide chat launcher button */
+        [class*="launcher"],
+        [class*="chatLauncher"],
+        [class*="chat-launcher"],
+        button[class*="Launcher"] {
+            display: none !important;
+        }
+
+        /* Remove background gradients and ensure solid black */
+        [class*="messagesContainer"],
+        [class*="messages-container"],
+        [class*="chatWindow"],
+        [class*="chat-window"] {
+            background: #000000 !important;
+        }
+
+        /* Hide footer/powered by text */
+        [class*="footer"],
+        [class*="poweredBy"],
+        [class*="powered-by"] {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
