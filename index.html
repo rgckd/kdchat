@@ -146,7 +146,8 @@
 
         createChat({
             webhookUrl: 'https://rgchandar.app.n8n.cloud/webhook/ba84a436-361c-4258-85ee-c0e8a41e1ec5/chat',
-            mode: 'fullscreen',
+            mode: 'window',
+            defaultOpen: true,
             showWelcomeScreen: false,
             initialMessages: [
                 'Hey drummer, This is Sharan, your People Success Partner.',
@@ -162,7 +163,8 @@
                     getStarted: 'Start Conversation',
                     inputPlaceholder: 'Type your message...',
                 }
-            }
+            },
+            target: '#n8n-chat'
         });
     </script>
 </body>
