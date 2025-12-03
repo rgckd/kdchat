@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kickdrum Chatbot</title>
+    <script src="https://unpkg.com/@n8n/chat@latest/dist/chat.umd.js"></script>
     <style>
         * {
             margin: 0;
@@ -287,6 +288,8 @@
     </header>
 
     <div class="chat-container">
+        <!-- n8n embedded chat will render into this container -->
+        <div id="n8n-chat"></div>
         <div class="messages" id="messages">
             <div class="welcome-message">
                 <h2>Welcome to Kickdrum Chat</h2>
@@ -308,6 +311,25 @@
     </div>
 
     <script>
+        // Initialize n8n embedded chat pointing to your workflow
+        // Docs: https://www.npmjs.com/package/@n8n/chat
+        if (window.n8nChat) {
+            window.n8nChat.init({
+                webhookUrl: 'https://rgchandar.app.n8n.cloud/webhook/3de15543-3335-4dca-9505-72a4656cafff/chat',
+                target: '#n8n-chat',
+                // Optional theme overrides to match Kickdrum styling
+                theme: {
+                    primaryColor: '#e63946',
+                    backgroundColor: '#000000',
+                    textColor: '#ffffff',
+                    inputBackgroundColor: '#1a1a1a',
+                    inputTextColor: '#ffffff',
+                    bubbleBackgroundColor: '#1a1a1a',
+                    bubbleTextColor: '#ffffff'
+                }
+            });
+        }
+
         const messagesContainer = document.getElementById('messages');
         const messageInput = document.getElementById('messageInput');
         const sendButton = document.getElementById('sendButton');
