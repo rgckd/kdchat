@@ -95,41 +95,11 @@
             font-weight: 600;
         }
 
-        /* Hide welcome screen elements */
-        [class*="welcomeScreen"],
-        [class*="welcome-screen"],
-        [class*="WelcomeScreen"] {
-            display: none !important;
-        }
-
-        /* Style the input container */
-        [class*="inputContainer"],
-        [class*="input-container"] {
-            background: #2a2a2a !important;
-            border-top: 1px solid #1a1a1a !important;
-        }
-
-        /* Hide chat launcher button */
-        [class*="launcher"],
-        [class*="chatLauncher"],
-        [class*="chat-launcher"],
-        button[class*="Launcher"] {
-            display: none !important;
-        }
-
-        /* Remove background gradients and ensure solid black */
-        [class*="messagesContainer"],
-        [class*="messages-container"],
-        [class*="chatWindow"],
-        [class*="chat-window"] {
-            background: #000000 !important;
-        }
-
-        /* Hide footer/powered by text */
-        [class*="footer"],
-        [class*="poweredBy"],
-        [class*="powered-by"] {
-            display: none !important;
+        /* Force solid black background throughout */
+        #n8n-chat,
+        #n8n-chat > *,
+        #n8n-chat * {
+            background-image: none !important;
         }
     </style>
 </head>
@@ -146,25 +116,19 @@
 
         createChat({
             webhookUrl: 'https://rgchandar.app.n8n.cloud/webhook/ba84a436-361c-4258-85ee-c0e8a41e1ec5/chat',
-            mode: 'window',
-            defaultOpen: true,
-            showWelcomeScreen: false,
+            mode: 'fullscreen',
             initialMessages: [
                 'Hey drummer, This is Sharan, your People Success Partner.',
                 'Do you have a few minutes to share your Kickdrum Experience with me?'
             ],
-            chatInputKey: 'chatInput',
-            chatSessionKey: 'sessionId',
             i18n: {
                 en: {
                     title: '',
                     subtitle: '',
                     footer: '',
-                    getStarted: 'Start Conversation',
                     inputPlaceholder: 'Type your message...',
                 }
-            },
-            target: '#n8n-chat'
+            }
         });
     </script>
 </body>
