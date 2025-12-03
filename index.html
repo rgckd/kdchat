@@ -296,23 +296,30 @@
         // Initialize n8n embedded chat pointing to your workflow
         // Docs: https://www.npmjs.com/package/@n8n/chat
         if (window.n8nChat) {
-            window.n8nChat.init({
+            window.n8nChat.createChat({
                 webhookUrl: 'https://rgchandar.app.n8n.cloud/webhook/ba84a436-361c-4258-85ee-c0e8a41e1ec5/chat',
-                target: '#n8n-chat',
+                mode: 'fullscreen',
                 // Optional theme overrides to match Kickdrum styling
-                theme: {
-                    primaryColor: '#e63946',
-                    backgroundColor: '#000000',
-                    textColor: '#ffffff',
-                    inputBackgroundColor: '#1a1a1a',
-                    inputTextColor: '#ffffff',
-                    bubbleBackgroundColor: '#1a1a1a',
-                    bubbleTextColor: '#ffffff'
+                chatInputKey: 'chatInput',
+                chatSessionKey: 'sessionId',
+                metadata: {},
+                showWelcomeScreen: false,
+                defaultLanguage: 'en',
+                initialMessages: [
+                    'Welcome to Kickdrum Chat!',
+                    'How can we help you assess, accelerate, or assure your technology today?'
+                ],
+                i18n: {
+                    en: {
+                        title: 'Kickdrum Chat',
+                        subtitle: 'Technology that transforms',
+                        footer: '',
+                        getStarted: 'Start conversation',
+                        inputPlaceholder: 'Type your message...',
+                    }
                 }
             });
         }
-
-        // Remove custom chat logic; rely solely on n8n embedded chat
     </script>
 </body>
 </html>
