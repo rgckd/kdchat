@@ -12,24 +12,23 @@
             box-sizing: border-box;
         }
 
-        body {
+        html, body {
+            width: 100%;
+            height: 100%;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background-color: #000000;
             color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            overflow: hidden;
         }
 
-        /* Header */
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
         header {
             background-color: #000000;
             padding: 1.5rem 2rem;
             border-bottom: 1px solid #1a1a1a;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .logo {
@@ -42,258 +41,23 @@
         .tagline {
             color: #888888;
             font-size: 0.9rem;
+            margin-top: 0.25rem;
         }
 
-        /* Main Chat Container */
-        .chat-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        
         #n8n-chat {
+            flex: 1;
             width: 100%;
             height: 100%;
-        }
-
-        /* Messages Area */
-        .messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1rem 0;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .message {
-            display: flex;
-            gap: 1rem;
-            animation: fadeIn 0.3s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .message.user {
-            flex-direction: row-reverse;
-        }
-
-        .message-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            flex-shrink: 0;
-        }
-
-        .message.bot .message-avatar {
-            background-color: #e63946;
-            color: #ffffff;
-        }
-
-        .message.user .message-avatar {
-            background-color: #333333;
-            color: #ffffff;
-        }
-
-        .message-content {
-            background-color: #1a1a1a;
-            padding: 1rem 1.25rem;
-            border-radius: 12px;
-            max-width: 70%;
-            line-height: 1.6;
-        }
-
-        .message.user .message-content {
-            background-color: #e63946;
-            color: #ffffff;
-        }
-
-        .message.bot .message-content {
-            background-color: #1a1a1a;
-            border: 1px solid #2a2a2a;
-        }
-
-        /* Input Area */
-        .input-container {
-            padding: 1.5rem 0;
-            border-top: 1px solid #1a1a1a;
-        }
-
-        .input-wrapper {
-            display: flex;
-            gap: 1rem;
-            background-color: #1a1a1a;
-            border: 1px solid #2a2a2a;
-            border-radius: 12px;
-            padding: 0.5rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .input-wrapper:focus-within {
-            border-color: #e63946;
-        }
-
-        #messageInput {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: #ffffff;
-            font-size: 1rem;
-            padding: 0.75rem;
-            outline: none;
-        }
-
-        #messageInput::placeholder {
-            color: #666666;
-        }
-
-        #sendButton {
-            background-color: #e63946;
-            color: #ffffff;
-            border: none;
-            padding: 0.75rem 2rem;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        #sendButton:hover {
-            background-color: #d62839;
-            transform: translateY(-1px);
-        }
-
-        #sendButton:active {
-            transform: translateY(0);
-        }
-
-        #sendButton:disabled {
-            background-color: #333333;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* Typing Indicator */
-        .typing-indicator {
-            display: none;
-            gap: 0.5rem;
-        }
-
-        .typing-indicator.active {
-            display: flex;
-        }
-
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #666666;
-            border-radius: 50%;
-            animation: typing 1.4s infinite;
-        }
-
-        .typing-dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .typing-dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes typing {
-            0%, 60%, 100% {
-                transform: translateY(0);
-                opacity: 0.5;
-            }
-            30% {
-                transform: translateY(-10px);
-                opacity: 1;
-            }
-        }
-
-        /* Scrollbar Styling */
-        .messages::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .messages::-webkit-scrollbar-track {
-            background: #0a0a0a;
-        }
-
-        .messages::-webkit-scrollbar-thumb {
-            background: #333333;
-            border-radius: 4px;
-        }
-
-        .messages::-webkit-scrollbar-thumb:hover {
-            background: #444444;
-        }
-
-        /* Welcome Message */
-        .welcome-message {
-            text-align: center;
-            padding: 3rem 1rem;
-            color: #888888;
-        }
-
-        .welcome-message h2 {
-            color: #ffffff;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .welcome-message p {
-            font-size: 1.1rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            header {
-                padding: 1rem;
-            }
-
-            .chat-container {
-                padding: 1rem;
-            }
-
-            .message-content {
-                max-width: 85%;
-            }
-
-            .welcome-message h2 {
-                font-size: 1.5rem;
-            }
         }
     </style>
 </head>
 <body>
     <header>
-        <div>
-            <div class="logo">Kickdrum</div>
-            <div class="tagline">Technology that transforms</div>
-        </div>
+        <div class="logo">Kickdrum</div>
+        <div class="tagline">Technology that transforms</div>
     </header>
 
-    <div class="chat-container">
-        <!-- n8n embedded chat will render into this container -->
-        <div id="n8n-chat"></div>
-    </div>
+    <div id="n8n-chat"></div>
 
     <script type="module">
         import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
