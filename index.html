@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kickdrum Chatbot</title>
-    <script src="https://unpkg.com/@n8n/chat@latest/dist/chat.umd.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
     <style>
         * {
             margin: 0;
@@ -49,11 +49,14 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            max-width: 900px;
             width: 100%;
-            margin: 0 auto;
-            padding: 2rem;
+            height: 100%;
             overflow: hidden;
+        }
+        
+        #n8n-chat {
+            width: 100%;
+            height: 100%;
         }
 
         /* Messages Area */
@@ -289,36 +292,27 @@
 
     <div class="chat-container">
         <!-- n8n embedded chat will render into this container -->
-        <div id="n8n-chat" style="width: 100%; height: 100%;"></div>
+        <div id="n8n-chat"></div>
     </div>
 
-    <script>
-        // Initialize n8n embedded chat pointing to your workflow
-        // Docs: https://www.npmjs.com/package/@n8n/chat
-        window.addEventListener('DOMContentLoaded', () => {
-            if (window.n8nChat) {
-                window.n8nChat.init({
-                    webhookUrl: 'https://rgchandar.app.n8n.cloud/webhook/ba84a436-361c-4258-85ee-c0e8a41e1ec5/chat',
-                    target: '#n8n-chat',
-                    mode: 'window',
-                    chatInputKey: 'chatInput',
-                    chatSessionKey: 'sessionId',
-                    showWelcomeScreen: true,
-                    defaultLanguage: 'en',
-                    initialMessages: [
-                        'Welcome to Kickdrum Chat!',
-                        'How can we help you assess, accelerate, or assure your technology today?'
-                    ],
-                    i18n: {
-                        en: {
-                            title: 'Kickdrum Chat',
-                            subtitle: 'Technology that transforms',
-                            footer: '',
-                            getStarted: 'Start conversation',
-                            inputPlaceholder: 'Type your message...',
-                        }
-                    }
-                });
+    <script type="module">
+        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+        createChat({
+            webhookUrl: 'https://rgchandar.app.n8n.cloud/webhook/ba84a436-361c-4258-85ee-c0e8a41e1ec5/chat',
+            mode: 'fullscreen',
+            initialMessages: [
+                'Welcome to Kickdrum Chat! 👋',
+                'How can we help you assess, accelerate, or assure your technology today?'
+            ],
+            i18n: {
+                en: {
+                    title: 'Kickdrum',
+                    subtitle: 'Technology that transforms',
+                    footer: '',
+                    getStarted: 'Start Conversation',
+                    inputPlaceholder: 'Type your message...',
+                }
             }
         });
     </script>
