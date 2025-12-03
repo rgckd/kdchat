@@ -101,6 +101,27 @@
         #n8n-chat * {
             background-image: none !important;
         }
+
+        /* Hide the chat bubble launcher */
+        button[aria-label="Open chat"],
+        [class*="ChatLauncher"],
+        [data-n8n-chat-launcher] {
+            display: none !important;
+        }
+
+        /* Force chat window to be visible and fullscreen */
+        [class*="ChatWindow"],
+        [class*="chat-window"] {
+            display: flex !important;
+            position: static !important;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 100% !important;
+            max-height: 100% !important;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
     </style>
 </head>
 <body>
